@@ -1,0 +1,20 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                                   controllers.Application.index
+GET         /update/technicals                  controllers.DataUpdate.technicalsIndex
+GET         /update/fundamentals                controllers.DataUpdate.fundamentalsIndex
+POST        /update/technicals/company          controllers.DataUpdate.updateTechnicals
+POST        /update/technicals/:symbol          controllers.Chart.updateTechnicalsFromChart(symbol: String)
+POST        /update/fundamentals/:symbol        controllers.Chart.updateFundamentalsFromChart(symbol: String)
+GET         /charting/:symbol                   controllers.Chart.get(symbol: String)
+
+GET         /register                           controllers.Registration.registrationIndex
+GET         /register/facebook                  controllers.Registration.registerFacebook
+GET         /socialauth/receive                 controllers.Registration.registerFacebookReceive(code: String)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                       controllers.Assets.versioned(path="/public", file: Asset)

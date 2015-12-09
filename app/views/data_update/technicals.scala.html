@@ -1,0 +1,31 @@
+
+@(message: UserMessageViewModel)
+@main("Update Technicals") {
+
+    <h1>Update Technicals</h1>
+
+    @message match {
+        case UserMessageViewModel(None, None) => { }
+        case UserMessageViewModel(Some(m), None) => {  <p style="color:green"><b>@m</b></p> }
+        case UserMessageViewModel(None, Some(m)) => { <p style="color:red"><b>@m</b></p> }
+
+    }
+
+
+    <p>Update technical data for a company, indexes or every company known</p>
+    <h2>Update Company</h2>
+        <form action="/update/technicals/company" method="POST">
+            <input type="text" name="symbol" id="symbol" />
+            <input type="submit" />
+        </form>
+    <h2>Update Index</h2>
+        <form action="/update/technicals/chart_display" method="POST">
+            <input type="text" name="chart_display" id="chart_display" />
+            <input type="submit" />
+        </form>
+    <h2>Update All (Nuclear)</h2>
+        <form action="/update/technicals/chart_display" method="POST">
+            <input type="text" name="chart_display" id="chart_display" />
+            <input type="submit" />
+        </form>
+}

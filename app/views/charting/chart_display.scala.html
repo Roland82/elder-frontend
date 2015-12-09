@@ -1,0 +1,27 @@
+@(model: Option[ChartViewModel])
+@main(s"Charting") {
+
+    @model match {
+        case Some(m) => {
+
+
+            <div>
+                <h1 style="width: 50%; display : block; float : left ;">@m.companyName</h1>
+                <form style="float: right" action="/update/technicals/@{model.get.symbol}" method="POST">
+                    <input type="submit" value="Update Chart" />
+                </form>
+
+                <form style="float: right" action="/update/fundamentals/@{model.get.symbol}" method="POST">
+                    <input type="submit" value="Update Fundamentals" />
+                </form>
+
+            </div>
+
+            <div id="container" style="height:  1000px;"></div>
+            <input type="hidden" id="symbol" value="@model.get.symbol" />
+        }
+        case _ => {
+            <h1>No company found</h1>
+        }
+    }
+}
